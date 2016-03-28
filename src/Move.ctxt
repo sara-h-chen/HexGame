@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Move()
+comment1.params=x\ y
+comment1.target=boolean\ setPosition(int,\ int)
+comment2.params=
+comment2.target=int\ getXPosition()
+comment3.params=
+comment3.target=int\ getYPosition()
+comment4.params=
+comment4.target=boolean\ hasConceded()
+comment5.params=
+comment5.target=boolean\ setConceded()
+numComments=6

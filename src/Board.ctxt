@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Board()
+comment1.params=sizeX\ sizeY
+comment1.target=boolean\ setBoardSize(int,\ int)
+comment2.params=
+comment2.target=Piece[][]\ getBoardView()
+comment3.params=colour\ move
+comment3.target=boolean\ placePiece(Piece,\ MoveInterface)
+comment4.params=
+comment4.target=Piece\ gameWon()
+numComments=5

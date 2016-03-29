@@ -1,17 +1,19 @@
-import java.util.Arrays;
-
 public class Board implements BoardInterface {
     
     private Piece[][] brd;
+    private Piece lastColour;
     
     public Board() {
         this.brd = null;
+        this.lastColour = null;
     }
 
     public boolean setBoardSize(int sizeX, int sizeY) throws InvalidBoardSizeException,
             BoardAlreadySizedException {
         if (sizeX < 1 || sizeY < 1) {
             throw new InvalidBoardSizeException("Specified size too small.");
+        } else if (sizeX > 100 || sizeY > 100) {
+        	throw new InvalidBoardSizeException("Specified size too large.");
         }
         if (brd != null) {
             throw new BoardAlreadySizedException("Board already exists.");
@@ -24,7 +26,7 @@ public class Board implements BoardInterface {
         if (brd == null) {
             throw new NoBoardDefinedException("Board has not been set!");
         }
-        //Make visual representation
+        //Make visual representation if you have the time
         
         /* Defensive copying of the board */
         Piece[][] defBoard = new Piece[brd.length][(brd[0]).length];
@@ -45,10 +47,31 @@ public class Board implements BoardInterface {
                     throws PositionAlreadyTakenException,
                     InvalidPositionException,
                     InvalidColourException {
-        return false;
+    	if (colour == lastColour) {
+    		throw new InvalidColourException("This player has already made a move.");
+    	}
+    	if ((move.getXPosition() < 0) || (move.getXPosition() >= (brd[0].length)) || (move.getYPosition() < 0) || (move.getYPosition() >= (brd.length))) {
+    		throw new InvalidPositionException("The position specified is not on the board.");
+    	}
+    	if (move.hasConceded()) {
+    		return false; //true;
+    	}
+    	if (brd[move.getYPosition()][move.getXPosition()] != null) {
+    		throw new PositionAlreadyTakenException("The space has already been taken.");
+    	} else {
+    		brd[move.getYPosition()][move.getXPosition()] = colour;
+    	}
+    	
+    	this.lastColour = colour;
+    	
+    		return true;
     }
 
     public Piece gameWon() throws NoBoardDefinedException {
+    	if (brd == null) {
+    		throw new NoBoardDefinedException("The game hasn't even started!");
+    	}
+    	//Write method to detect if the game has been won
         return null;
     }
 

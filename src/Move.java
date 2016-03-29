@@ -6,13 +6,13 @@ public class Move implements MoveInterface {
 	private boolean concede;
 	
 	public Move() {
-		this.posx = 0;
-		this.posy = 0;
+		this.posx = -1;
+		this.posy = -1;
 		this.concede = false;
 	}
 
 	public boolean setPosition(int x, int y) throws InvalidPositionException {
-		if (x < 0 || y < 0 ) {//(x > board.getSize() || y > board.getSize()) {
+		if (x < 0 || y < 0) {
 			throw new InvalidPositionException("Error: The position specified is not allowed.");
 		}
 		this.posx = x;
